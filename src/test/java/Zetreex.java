@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Zetreex {
@@ -29,10 +30,10 @@ public class Zetreex {
         executor.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    @AfterMethod
-    public void setDown() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void setDown() {
+//        driver.quit();
+//    }
 
     @Test
     public void testChangingLanguage() {
@@ -88,12 +89,22 @@ public class Zetreex {
         WebElement ok = driver.findElement(By.xpath("//div[@class='modal']//button"));
         Assert.assertEquals(ok.getText(), "Хорошо");
     }
+
     @Test
-    public void testContactUs(){
-        WebElement contactUs=driver.findElement(By.xpath("//span[text()='Связаться с нами']"));
+    public void testContactUs() {
+        WebElement contactUs = driver.findElement(By.xpath("//span[text()='Связаться с нами']"));
         contactUs.click();
         WebElement feedback = driver.findElement(By.xpath("//div[@class='container']/h2"));
-        Assert.assertEquals(feedback.getText(),"Обратная связь");
+        Assert.assertEquals(feedback.getText(), "Обратная связь");
+        WebElement email = driver.findElement(By.xpath("//div[@class='about__feedback_info']/a[1]"));
+        Assert.assertEquals(email.getText(), "info@zetasolutions.io");
+        WebElement zetreexLinkedin = driver.findElement(By.xpath("//div[@class='about__feedback_info']/a[2]"));
+        Set<String> oldWindowsSet = driver.getWindowHandles();
+        zetreexLinkedin.click();
+        Set<String> newWindowsSet = driver.getWindowHandles();
+        newWindowsSet.removeAll(oldWindowsSet);
+        String newWindowHandle = newWindowsSet.iterator().next();
+        driver.switchTo().window(newWindowHandle);
+        Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
     }
 }
-
