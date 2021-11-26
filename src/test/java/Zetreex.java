@@ -88,5 +88,12 @@ public class Zetreex {
         WebElement ok = driver.findElement(By.xpath("//div[@class='modal']//button"));
         Assert.assertEquals(ok.getText(), "Хорошо");
     }
+    @Test
+    public void testContactUs(){
+        WebElement contactUs=driver.findElement(By.xpath("//span[text()='Связаться с нами']"));
+        contactUs.click();
+        WebElement feedback = driver.findElement(By.xpath("//div[@class='container']/h2"));
+        Assert.assertEquals(feedback.getText(),"Обратная связь");
+    }
 }
 
