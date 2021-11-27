@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -94,7 +93,6 @@ public class Zetreex {
         approval.click();
         WebElement send = driver.findElement(By.className("add__vacancies"));
         send.click();
-        //  WebElement ok = driver.findElement(By.xpath("//button[@class='success__button_ok']"));
         WebElement ok = driver.findElement(By.xpath("//div[@class='modal']//button"));
         Assert.assertEquals(ok.getText(), "Хорошо");
     }
