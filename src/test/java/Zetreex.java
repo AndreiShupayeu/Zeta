@@ -9,7 +9,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -70,6 +69,16 @@ public class Zetreex {
     }
 
     @Test
+    public void testPrivacyPolicy() {
+        WebElement vacancies = driver.findElement(By.xpath("//span[text()=\"Вакансии\"]"));
+        vacancies.click();
+        WebElement termsOfPersonalDataProcessing = driver.findElement(By.xpath("//span[text()=\"Условиями обработки персональных данных\"]"));
+        termsOfPersonalDataProcessing.click();
+        WebElement privacyPolicy = driver.findElement(By.xpath("//div[@class='modal']//div[@class='privacy__body']/h3[@class='privacy__body_title']"));
+        Assert.assertEquals(privacyPolicy.getText(), "Политика по сбору и обработке персональных данных");
+    }
+
+    @Test
     public void testInternships() {
         WebElement internships = driver.findElement(By.xpath("//span[text()=\"Стажировки\"]"));
         internships.click();
@@ -119,14 +128,15 @@ public class Zetreex {
         driver.switchTo().window(newWindowHandle);
         Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
     }
+
     @Test
-    public void testLogo(){
+    public void testLogo() {
         WebElement logo = driver.findElement(By.xpath("//img[@src='/img/Logo.2cb35532.svg']"));
         logo.click();
-        WebElement vacancies=driver.findElement(By.xpath("//span[text()=\"Вакансии\"]"));
+        WebElement vacancies = driver.findElement(By.xpath("//span[text()=\"Вакансии\"]"));
         vacancies.click();
         logo.click();
-        WebElement aboutUs=driver.findElement(By.xpath("//h2[@class='text__about_us']"));
-        Assert.assertEquals(aboutUs.getText(),"Разрабатываем сервисы в области социальных сетей");
+        WebElement aboutUs = driver.findElement(By.xpath("//h2[@class='text__about_us']"));
+        Assert.assertEquals(aboutUs.getText(), "Разрабатываем сервисы в области социальных сетей");
     }
 }
