@@ -30,10 +30,10 @@ public class Zetreex {
         executor.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-//    @AfterMethod
-//    public void setDown() {
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void setDown() {
+        driver.quit();
+    }
 
     @Test
     public void testChangingLanguage() {
@@ -65,8 +65,8 @@ public class Zetreex {
         approval.click();
         WebElement toSend = driver.findElement(By.xpath("//div[@id=\"app\"]/div[2]/div/div[2]/form/button"));
         toSend.click();
-        WebElement popap = driver.findElement(By.xpath("//div[@class='modal']//button"));
-        Assert.assertEquals(popap.getText(), "Хорошо");
+        WebElement ok = driver.findElement(By.xpath("//div[@class='modal']//button"));
+        Assert.assertEquals(ok.getText(), "Хорошо");
     }
 
     @Test
@@ -98,13 +98,24 @@ public class Zetreex {
         Assert.assertEquals(feedback.getText(), "Обратная связь");
         WebElement email = driver.findElement(By.xpath("//div[@class='about__feedback_info']/a[1]"));
         Assert.assertEquals(email.getText(), "info@zetasolutions.io");
-        WebElement zetreexLinkedin = driver.findElement(By.xpath("//div[@class='about__feedback_info']/a[2]"));
+        WebElement companyLinkedin = driver.findElement(By.xpath("//div[@class='about__feedback_info']/a[2]"));
         Set<String> oldWindowsSet = driver.getWindowHandles();
-        zetreexLinkedin.click();
+        companyLinkedin.click();
         Set<String> newWindowsSet = driver.getWindowHandles();
         newWindowsSet.removeAll(oldWindowsSet);
         String newWindowHandle = newWindowsSet.iterator().next();
         driver.switchTo().window(newWindowHandle);
         Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
     }
-}
+        @Test
+        public void testLinkLinkedinHR () {
+            WebElement linkedinHR = driver.findElement(By.xpath("//div[@class='link_hr']/a/p"));
+            Set<String> oldWindowsSet = driver.getWindowHandles();
+            linkedinHR.click();
+            Set<String> newWindowsSet = driver.getWindowHandles();
+            newWindowsSet.removeAll(oldWindowsSet);
+            String newWindowHandle = newWindowsSet.iterator().next();
+            driver.switchTo().window(newWindowHandle);
+            Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
+        }
+    }
