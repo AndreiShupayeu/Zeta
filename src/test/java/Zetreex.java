@@ -107,15 +107,26 @@ public class Zetreex {
         driver.switchTo().window(newWindowHandle);
         Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
     }
-        @Test
-        public void testLinkLinkedinHR () {
-            WebElement linkedinHR = driver.findElement(By.xpath("//div[@class='link_hr']/a/p"));
-            Set<String> oldWindowsSet = driver.getWindowHandles();
-            linkedinHR.click();
-            Set<String> newWindowsSet = driver.getWindowHandles();
-            newWindowsSet.removeAll(oldWindowsSet);
-            String newWindowHandle = newWindowsSet.iterator().next();
-            driver.switchTo().window(newWindowHandle);
-            Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
-        }
+
+    @Test
+    public void testLinkLinkedinHR() {
+        WebElement linkedinHR = driver.findElement(By.xpath("//div[@class='link_hr']/a/p"));
+        Set<String> oldWindowsSet = driver.getWindowHandles();
+        linkedinHR.click();
+        Set<String> newWindowsSet = driver.getWindowHandles();
+        newWindowsSet.removeAll(oldWindowsSet);
+        String newWindowHandle = newWindowsSet.iterator().next();
+        driver.switchTo().window(newWindowHandle);
+        Assert.assertTrue(driver.getCurrentUrl().contains("linkedin"));
     }
+    @Test
+    public void testLogo(){
+        WebElement logo = driver.findElement(By.xpath("//img[@src='/img/Logo.2cb35532.svg']"));
+        logo.click();
+        WebElement vacancies=driver.findElement(By.xpath("//span[text()=\"Вакансии\"]"));
+        vacancies.click();
+        logo.click();
+        WebElement aboutUs=driver.findElement(By.xpath("//h2[@class='text__about_us']"));
+        Assert.assertEquals(aboutUs.getText(),"Разрабатываем сервисы в области социальных сетей");
+    }
+}
