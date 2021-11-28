@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -37,8 +38,7 @@ public class Zetreex {
     public void testChangingLanguage() {
         WebElement languageEnglish = driver.findElement(By.xpath("//*[@id=\"app\"]/header/div/div/div[1]/div[2]/p"));
         languageEnglish.click();
-        WebElement wordInEnglish = driver.findElement(By.xpath("//*[@id=\"app\"]/header/div/div/nav/ul/li[1]/a/span"));
-        System.out.println(wordInEnglish.getText());
+        WebElement wordInEnglish = driver.findElement(By.xpath("//span[text()='About Us']"));
         Assert.assertEquals(wordInEnglish.getText(), "About Us");
         WebElement languageRussian = driver.findElement(By.xpath("//*[@id=\"app\"]/header/div/div/div[1]/div[1]/p"));
         languageRussian.click();
