@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -36,26 +35,26 @@ public class Zetreex {
 
     @Test
     public void testChangingLanguage() {
-        WebElement languageEnglish = driver.findElement(By.xpath("//*[@id=\"app\"]/header/div/div/div[1]/div[2]/p"));
+        WebElement languageEnglish = driver.findElement(By.xpath("//div[@id='app']/header//div[1]/div[2]/p"));
         languageEnglish.click();
         WebElement wordInEnglish = driver.findElement(By.xpath("//span[text()='About Us']"));
         Assert.assertEquals(wordInEnglish.getText(), "About Us");
         WebElement languageRussian = driver.findElement(By.xpath("//*[@id=\"app\"]/header/div/div/div[1]/div[1]/p"));
         languageRussian.click();
-        WebElement wordInRussian = driver.findElement(By.xpath("//*[@id=\"app\"]/header/div/div/nav/ul/li[1]/a/span"));
+        WebElement wordInRussian = driver.findElement(By.xpath("//span[text()='О нас']"));
         System.out.println(wordInRussian.getText());
         Assert.assertEquals(wordInRussian.getText(), "О нас");
     }
 
     @Test
     public void testVacancies() {
-        WebElement vacancies = driver.findElement(By.xpath("//div[@id=\"app\"]/header/div/div/nav/ul/li[2]/a/span"));
+        WebElement vacancies = driver.findElement(By.xpath("//span[text()='Вакансии']"));
         vacancies.click();
-        WebElement name = driver.findElement(By.xpath("//input[@id=\"vacancies__name1\"]"));
+        WebElement name = driver.findElement(By.id("vacancies__name1"));
         name.sendKeys("Name");
-        WebElement position = driver.findElement(By.xpath("//div[@id=\"app\"]/div[2]/div/div[2]/form/div[2]"));
+        WebElement position = driver.findElement(By.className("vacancies__select1"));
         position.click();
-        WebElement oneOfPosition = driver.findElement(By.xpath("//div[@id=\"app\"]/div[2]/div/div[2]/form/div[2]/div[3]/p[1]"));
+        WebElement oneOfPosition = driver.findElement(By.xpath("//div[contains(@class,'1 active')]/p[text()='Java Developer']"));
         oneOfPosition.click();
         WebElement fonOrLinkedin = driver.findElement(By.xpath("//input[@id=\"vacancies__linked1\"]"));
         fonOrLinkedin.sendKeys("12345");
