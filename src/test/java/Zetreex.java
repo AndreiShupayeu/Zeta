@@ -58,9 +58,9 @@ public class Zetreex {
         oneOfPosition.click();
         WebElement fonOrLinkedin = driver.findElement(By.xpath("//input[@id=\"vacancies__linked1\"]"));
         fonOrLinkedin.sendKeys("12345");
-        WebElement approval = driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div/div[2]/form/div[4]/label[1]"));
+        WebElement approval = driver.findElement(By.xpath("//label[@class='check_hover']"));
         approval.click();
-        WebElement toSend = driver.findElement(By.xpath("//div[@id=\"app\"]/div[2]/div/div[2]/form/button"));
+        WebElement toSend = driver.findElement(By.className("add__vacancies"));
         toSend.click();
         WebElement ok = driver.findElement(By.xpath("//div[@class='modal']//button"));
         Assert.assertEquals(ok.getText(), "Хорошо");
